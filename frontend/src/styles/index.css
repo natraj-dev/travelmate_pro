@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-sand text-charcoal font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+  }
+  ::selection {
+    @apply bg-gold-light/60 text-ink;
+  }
+}
+
+@layer components {
+  /* ---- Buttons ---- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold
+           transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-white hover:bg-ink-light shadow-soft hover:shadow-card active:scale-[0.98];
+  }
+  .btn-gold {
+    @apply btn bg-gold-gradient text-ink hover:shadow-gold active:scale-[0.98];
+  }
+  .btn-outline {
+    @apply btn border border-ink/15 text-ink bg-white hover:bg-sand active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply btn text-ink hover:bg-ink/5 active:scale-[0.98];
+  }
+  .btn-danger {
+    @apply btn bg-danger text-white hover:bg-danger/90 active:scale-[0.98];
+  }
+  .btn-sm {
+    @apply px-3.5 py-1.5 text-xs;
+  }
+
+  /* ---- Surfaces ---- */
+  .card {
+    @apply bg-white rounded-2xl shadow-card border border-ink/5;
+  }
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lifted hover:-translate-y-0.5;
+  }
+  .panel {
+    @apply bg-white rounded-2xl shadow-soft border border-ink/5 p-6;
+  }
+
+  /* ---- Forms ---- */
+  .field-label {
+    @apply block text-xs font-semibold uppercase tracking-wide text-slate mb-1.5;
+  }
+  .input {
+    @apply w-full rounded-xl border border-ink/15 bg-white px-3.5 py-2.5 text-sm text-charcoal
+           placeholder:text-slate/70 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold
+           transition-colors;
+  }
+  .select {
+    @apply input appearance-none pr-9;
+  }
+  .textarea {
+    @apply input resize-none;
+  }
+
+  /* ---- Badges ---- */
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+  .badge-success { @apply badge bg-success/10 text-success; }
+  .badge-warning { @apply badge bg-gold/15 text-gold-dark; }
+  .badge-danger  { @apply badge bg-danger/10 text-danger; }
+  .badge-info    { @apply badge bg-info/10 text-info; }
+  .badge-neutral { @apply badge bg-ink/[8%] text-ink; }
+
+  /* ---- Signature: Boarding-pass / ticket-stub card ----
+     Used for booking confirmations, itinerary summaries, and membership cards —
+     a deliberate nod to travel documents, kept out of generic UI chrome. */
+  .ticket {
+    @apply relative bg-white rounded-2xl shadow-card border border-ink/5 overflow-hidden;
+  }
+  .ticket::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 72%;
+    width: 0;
+    border-left: 2px dashed theme('colors.ink.DEFAULT / 15%');
+  }
+  .ticket-notch-top,
+  .ticket-notch-bottom {
+    content: '';
+    position: absolute;
+    left: 72%;
+    width: 20px;
+    height: 20px;
+    background: theme('colors.sand.DEFAULT');
+    border-radius: 999px;
+    transform: translateX(-50%);
+  }
+  .ticket-notch-top { top: -10px; }
+  .ticket-notch-bottom { bottom: -10px; }
+
+  /* ---- Scrollbar polish ---- */
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { @apply bg-ink/15 rounded-full; }
+  .scrollbar-thin::-webkit-scrollbar-track { @apply bg-transparent; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}
